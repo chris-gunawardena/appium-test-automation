@@ -43,46 +43,13 @@ describe("ios safari", function () {
 
 	it("should get the url", function () {
 		return driver
-			.get('https://m.sb.qa.sbetenv.com')
+			.get('http://jsbin.com/bobufugixu/1/')
+			.waitForElementByCss('iframe#search-iframe', 5000)
+			.frame( 'search-iframe' )
+			.elementByCss('#sb_form_q').sendKeys('foo bar')
+			.elementByCss('#sb_form_go').click()
+			.sleep(15000);
 
-			//go the 3rd race item in homepage carousel
-			.waitForElementById('next-to-jump', 15000)
-			.elementByCssSelector('#next-to-jump .swiper-wrapper >  div:nth-of-type(3)').click()
-
-			//add to bet slip
-			.waitForElementById('sbm-page-wrapper', 15000)
-			.elementByCssSelector('.card-outcome-list > :first-child .rc-content-bet-options  div:first-child a').click()
-
-			//open bet slip
-			.elementByCssSelector('a.sportsbet-button-betslip').click()
-
-
-			//add money to the bet
-			.waitForElementById('sbm-page-wrapper', 15000)
-			.elementByCssSelector('#se_betslip-S-wrapper > div:nth-child(1) .stake-control-plus.btn.right').click()
-
-
-			//place bet
-			.elementByCssSelector('#bet-slip-footer-button').click()
-
-			//.sleep(5000)
-
-			//login
-			.waitForElementById('oauth_iframe', 15000)
-			//.TargetLocator()
-			.frame( 'oauth_iframe' )//driver.elementByCssSelector("iframe#oauth_iframe")
-			.elementByCssSelector('#username').sendKeys('chrisgu')
-			.elementByCssSelector('#password').sendKeys('sports99')
-			.elementByCssSelector('.submit-button').click()
-
-
-			.sleep(50000)
-			//click on the bet value input box, should get focus
-			.elementByCssSelector('.prepended-input input').click().sendKeys('100')
-
-			.sleep(50000)
-
-			.title().should.eventually.include('sauce labs');
 	});
 
 });

@@ -1,0 +1,17 @@
+{
+  "name": "sportsbet",
+  "version": "0.0.0",
+  "description": "",
+  "bugs": {
+    "url": "https://github.com/chris-gunawardena/appium-test-automation/issues"
+  },
+  "homepage": "https://github.com/chris-gunawardena/appium-test-automation",
+  "devDependencies": {
+    "chai": "^2.1.0",
+    "chai-as-promised": "^4.2.0",
+    "colors": "^1.0.3",
+    "mocha": "^2.1.0",
+    "underscore": "^1.8.2",
+    "wd": "^0.3.11"
+  }
+}
