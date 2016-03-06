@@ -7,7 +7,7 @@ var wd = require("wd"),
 		serverConfigs = require('./helpers/appium-servers');
 
 describe("ios safari", function () {
-	this.timeout(3000000);
+	this.timeout(300000);
 	var driver;
 	var allPassed = true;
 
@@ -43,35 +43,13 @@ describe("ios safari", function () {
 
 	it("should get the url", function () {
 		return driver
+			.get('http://jsbin.com/kicuvo/3')
+			.waitForElementByCss('iframe#search-iframe', 5000)
+			.frame( 'search-iframe' )
+			.elementById('sb_form_q').sendKeys('foo bar')
+			.elementById('sb_form_go').click()
+			.sleep(15000);
 
-			.sleep(1000)
-
-			.get('https://m.sportsbet.com.au')
-
-			//go the 3rd race item in homepage carousel
-			.waitForElementByCss('#next-to-jump .swiper-wrapper >  div:nth-of-type(3)', 5000).click()
-
-			//add to bet slip
-			.waitForElementByCss('.card-outcome-list > :first-child .rc-content-bet-options  div:first-child a', 5000).click()
-
-			//open bet slip
-			.waitForElementByCss('a.sportsbet-button-betslip', 5000).click()
-
-			//add money to the bet
-			.waitForElementByCss('#se_betslip-S-wrapper > div:nth-child(1) .stake-control-plus.btn.right', 5000).click()
-
-			//place bet
-			.waitForElementByCss('#bet-slip-footer-button', 15000).click()
-
-			//login
-			.waitForElementByCss('iframe#oauth_iframe', 5000)
-			.sleep(5000)
-
-			//click on the bet value input box, should get focus
-			.elementByCss('.prepended-input input').click().sendKeys('100')
-
-
-			.title().should.eventually.include('sauce labs');
 	});
 
 });
